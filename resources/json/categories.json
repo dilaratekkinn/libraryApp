@@ -1,0 +1,37 @@
+[
+        {
+            "id": 1,
+            "name": "Thriller",
+            "status": true
+        },
+        {
+            "id": 2,
+            "name": "Memoir",
+            "status": true
+        },
+        {
+            "id": 3,
+            "name": "Dystopian",
+            "status": true
+        },
+        {
+            "id": 4,
+            "name": "Mystery",
+            "status": true
+        },
+        {
+            "id": 5,
+            "name": "Fantasy",
+            "status": true
+        },
+        {
+            "id": 6,
+            "name": "Science Fiction",
+            "status": true
+        },
+        {
+            "id": 7,
+            "name": "Classics",
+            "status": true
+        }
+    ]

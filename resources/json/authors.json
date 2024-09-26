@@ -1,0 +1,125 @@
+
+    [
+        {
+            "id": 101,
+            "name": "Alex Michaelides",
+            "bio": "Alex Michaelides is a British-Cypriot author best known for his debut novel 'The Silent Patient'.",
+            "status": true
+        },
+        {
+            "id": 102,
+            "name": "Tara Westover",
+            "bio": "Tara Westover is an American memoirist, essayist, and historian. She is known for her memoir 'Educated'.",
+            "status": true
+        },
+        {
+            "id": 103,
+            "name": "Michelle Obama",
+            "bio": "Michelle Obama is an American attorney and author who served as the first lady of the United States from 2009 to 2017.",
+            "status": true
+        },
+        {
+            "id": 104,
+            "name": "Margaret Atwood",
+            "bio": "Margaret Atwood is a Canadian poet, novelist, literary critic, and essayist, known for 'The Handmaid's Tale'.",
+            "status": true
+        },
+        {
+            "id": 105,
+            "name": "Delia Owens",
+            "bio": "Delia Owens is an American author and zoologist, known for her debut novel 'Where the Crawdads Sing'.",
+            "status": true
+        },
+        {
+            "id": 106,
+            "name": "Celeste Ng",
+            "bio": "Celeste Ng is an American writer and novelist. She is the author of 'Little Fires Everywhere'.",
+            "status": true
+        },
+        {
+            "id": 107,
+            "name": "Erin Morgenstern",
+            "bio": "Erin Morgenstern is an American multimedia artist and author of 'The Night Circus'.",
+            "status": true
+        },
+        {
+            "id": 108,
+            "name": "Sally Rooney",
+            "bio": "Sally Rooney is an Irish author and screenwriter, known for her novels 'Normal People' and 'Conversations with Friends'.",
+            "status": true
+        },
+        {
+            "id": 109,
+            "name": "Frank Herbert",
+            "bio": "Frank Herbert was an American science-fiction author best known for the 'Dune' series.",
+            "status": true
+        },
+        {
+            "id": 110,
+            "name": "George Orwell",
+            "bio": "George Orwell was an English novelist and essayist, journalist and critic, known for his novels '1984' and 'Animal Farm'.",
+            "status": true
+        },
+        {
+            "id": 111,
+            "name": "J.D. Salinger",
+            "bio": "J.D. Salinger was an American writer best known for his novel 'The Catcher in the Rye'.",
+            "status": true
+        },
+        {
+            "id": 112,
+            "name": "Cormac McCarthy",
+            "bio": "Cormac McCarthy was an American novelist, playwright, and screenwriter, known for 'The Road' and 'No Country for Old Men'.",
+            "status": true
+        },
+        {
+            "id": 113,
+            "name": "Paulo Coelho",
+            "bio": "Paulo Coelho is a Brazilian lyricist and novelist, known for his novel 'The Alchemist'.",
+            "status": true
+        },
+        {
+            "id": 114,
+            "name": "J.K. Rowling",
+            "bio": "J.K. Rowling is a British author, best known for writing the 'Harry Potter' series.",
+            "status": true
+        },
+        {
+            "id": 115,
+            "name": "J.R.R. Tolkien",
+            "bio": "J.R.R. Tolkien was an English writer, poet, and academic, known for 'The Hobbit' and 'The Lord of the Rings'.",
+            "status": true
+        },
+        {
+            "id": 116,
+            "name": "Harper Lee",
+            "bio": "Harper Lee was an American novelist, known for her novel 'To Kill a Mockingbird'.",
+            "status": true
+        },
+        {
+            "id": 117,
+            "name": "Aldous Huxley",
+            "bio": "Aldous Huxley was an English writer and philosopher, known for his dystopian novel 'Brave New World'.",
+            "status": true
+        },
+        {
+            "id": 118,
+            "name": "Ray Bradbury",
+            "bio": "Ray Bradbury was an American author and screenwriter, best known for his dystopian novel 'Fahrenheit 451'.",
+            "status": true
+        },
+        {
+            "id": 119,
+            "name": "F. Scott Fitzgerald",
+            "bio": "F. Scott Fitzgerald was an American novelist, known for his novel 'The Great Gatsby'.",
+            "status": true
+        },
+        {
+            "id": 120,
+            "name": "Herman Melville",
+            "bio": "Herman Melville was an American novelist, best known for 'Moby Dick'.",
+            "status": true
+        }
+    ]
+
+
