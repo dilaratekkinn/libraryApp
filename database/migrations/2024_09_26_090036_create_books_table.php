@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('author_id');
             $table->longText('summary');
             $table->text('cover_image');
-            $table->integer('category_id');
             $table->integer('library_id');
             $table->date('published_year');
             $table->boolean('is_active')->default(true);

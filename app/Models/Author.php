@@ -10,4 +10,6 @@ use Mpociot\Versionable\VersionableTrait;
 class Author extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
 }

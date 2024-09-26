@@ -10,4 +10,6 @@ use Mpociot\Versionable\VersionableTrait;
 class Category extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
 }

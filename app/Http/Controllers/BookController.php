@@ -6,6 +6,7 @@ use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
 use App\Http\Services\BookService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class BookController extends Controller
 {
@@ -23,18 +24,44 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        list($books, $count) = $this->bookService->listAll($request->all());
+        try {
+            return $this->successResponse->setData([
+                    'books' => $books,
+                    'count' => $count
+                ]
+            )->setMessages(
+                Lang::get('Books are listed Successfully'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create( Request $request)
     {
-        //
+        try {
+            $this->bookService->createRecord($request->all());
+            return $this->successResponse->setData([
+            ])->setMessages(
+                Lang::get('Successfully Added'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
     }
+
 
     /**
      * Store a newly created resource in storage.
