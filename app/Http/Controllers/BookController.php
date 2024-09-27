@@ -67,7 +67,6 @@ class BookController extends Controller
                 Lang::get('Book Created Successfully'),
             )->send();
         } catch (\Exception $e) {
-            dd($e);
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),
             ])->send();
@@ -100,8 +99,9 @@ class BookController extends Controller
             )->send();
 
         } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();        }
     }
 
     public function getByPagination(Request $request)

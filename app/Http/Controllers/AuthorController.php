@@ -97,10 +97,10 @@ class AuthorController extends Controller
             ])->setMessages(
                 Lang::get('Author Deleted Successfully'),
             )->send();
-
         } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();        }
     }
 
     public function getByPagination(Request $request)
