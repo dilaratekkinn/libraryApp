@@ -2,17 +2,21 @@
 
 namespace App\Http\Services;
 
+use App\Repositories\BookLibraryRepository;
 use App\Repositories\LibraryRepository;
 
 class LibraryService
 {
     private LibraryRepository $libraryRepository;
+    private BookLibraryRepository $bookLibraryRepository;
 
     public function __construct(
-        LibraryRepository $libraryRepository
+        LibraryRepository     $libraryRepository,
+        BookLibraryRepository $bookLibraryRepository
     )
     {
         $this->libraryRepository = $libraryRepository;
+        $this->bookLibraryRepository = $bookLibraryRepository;
     }
 
     public function listAll()
@@ -40,17 +44,18 @@ class LibraryService
         return $this->libraryRepository->createData($data);
     }
 
-    public function updateData($id,array $parameters)
+    public function updateData($id, array $parameters)
     {
         $data = [
             'name' => $parameters['name'],
             'address' => $parameters['address'],
         ];
-       return  $this->libraryRepository->updateData($id,$data);
+        return $this->libraryRepository->updateData($id, $data);
     }
 
-    public function delete($id){
-
-    return $this->libraryRepository->deleteById($id);
+    public function delete($id)
+    {
+        $this->bookLibraryRepository->deleteByLibraryId($id);
+        return $this->libraryRepository->deleteById($id);
     }
 }

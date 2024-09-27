@@ -2,17 +2,21 @@
 
 namespace App\Http\Services;
 
+use App\Repositories\BookCategoryRepository;
 use App\Repositories\CategoryRepository;
 
 class CategoryService
 {
     private CategoryRepository $categoryRepository;
+    private BookCategoryRepository $bookCategoryRepository;
 
     public function __construct(
-        CategoryRepository $categoryRepository
+        CategoryRepository     $categoryRepository,
+        BookCategoryRepository $bookCategoryRepository
     )
     {
         $this->categoryRepository = $categoryRepository;
+        $this->bookCategoryRepository = $bookCategoryRepository;
     }
 
     public function listAll()
@@ -39,16 +43,18 @@ class CategoryService
         return $this->categoryRepository->createData($data);
     }
 
-    public function updateData($id,array $parameters)
+    public function updateData($id, array $parameters)
     {
         $data = [
             'name' => $parameters['name'],
         ];
-       return  $this->categoryRepository->updateData($id,$data);
+        return $this->categoryRepository->updateData($id, $data);
     }
 
-    public function delete($id){
-
-    return $this->categoryRepository->deleteById($id);
+    public function delete($id)
+    {
+        // dd(7);
+        $this->bookCategoryRepository->deleteByCategoryId($id);
+        return $this->categoryRepository->deleteById($id);
     }
 }

@@ -10,6 +10,7 @@ class BookCategory extends Model
 {
     use HasFactory;
     use VersionableTrait;
+
     protected $guarded = [];
 
 }

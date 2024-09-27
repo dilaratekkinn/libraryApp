@@ -13,10 +13,7 @@ class Library extends Model
     use VersionableTrait;
     protected $guarded = [];
 
-
-
-    public function getBooks(){
-
-        return $this->hasMany(Book::class);
+    public function getLibraryBooks(){
+        return $this->belongsToMany(Book::class, 'book_libraries');
     }
 }

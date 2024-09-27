@@ -20,7 +20,7 @@ class LibraryResource extends JsonResource
             'address' => $this->address,
         ];
         if($request->route()->getName() =='library.show'){
-            $data['books']=BookResource::collection($this->getBooks);
+            $data['books']=BookLibraryResource::collection($this->getLibraryBooks);
         }
         return $data;
     }

@@ -60,4 +60,5 @@ class BaseRepository implements BaseInterface
         $model->update($data);
         return $model->fresh();
     }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Services;
 
 
+use App\Models\BookCategory;
+use App\Models\BookLibrary;
 use App\Repositories\BookCategoryRepository;
 use App\Repositories\BookLibraryRepository;
 use App\Repositories\BookRepository;
@@ -78,11 +80,35 @@ class BookService
             'summary' => $parameters['summary'],
             'published_year' => $parameters['published_year'],
         ];
-        return $this->bookRepository->updateData($id, $data);
+
+        $book = $this->bookRepository->updateData($id, $data);
+        $this->bookCategoryRepository->deleteByBookId($id);
+
+        foreach ($parameters['category_ids'] as $categoryId) {
+            $data = [
+                'book_id' => $id,
+                'category_id' => $categoryId
+            ];
+            $this->bookCategoryRepository->createData($data);
+        }
+
+        $this->bookLibraryRepository->deleteByBookId($id);
+
+
+        foreach ($parameters['library_ids'] as $libraryId) {
+            $data = [
+                'book_id' => $id,
+                'library_id' => $libraryId
+            ];
+            $this->bookLibraryRepository->createData($data);
+        }
+        return $book;
     }
 
     public function delete($id)
     {
+        $this->bookCategoryRepository->deleteByBookId($id);
+        $this->bookLibraryRepository->deleteByBookId($id);
 
         return $this->bookRepository->deleteById($id);
     }
