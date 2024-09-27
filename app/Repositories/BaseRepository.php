@@ -61,4 +61,17 @@ class BaseRepository implements BaseInterface
         return $model->fresh();
     }
 
+    public function getVersions(int $id)
+    {
+        $collection = collect();
+        $model = $this->model->findOrFail($id);
+
+        $versions = $model->versions()->limit(10)->orderBy('version_id', 'desc')->get();
+        foreach($versions as $version){
+            $item = unserialize($version->model_data);
+            $item['user_id'] = $version->user_id;
+            $collection->add($item);
+        }
+        return $collection;
+    }
 }

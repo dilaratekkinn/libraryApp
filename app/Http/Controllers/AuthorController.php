@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Requests\Author\AuthorCreateRequest;
+use App\Http\Requests\Author\AuthorUpdateRequest;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\AuthorVersionResource;
 use App\Http\Services\AuthorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -57,7 +60,7 @@ class AuthorController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(AuthorCreateRequest $request)
     {
         try {
             $author = $this->authorService->createData($request->all());
@@ -73,7 +76,7 @@ class AuthorController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, AuthorUpdateRequest $request)
     {
         try {
             $author = $this->authorService->updateData($id, $request->all());
@@ -114,6 +117,20 @@ class AuthorController extends Controller
                 ]
             )->setMessages(
                 Lang::get('Authorizes are listed Successfully'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+    }
+    public function versions(Request $request)
+    {
+        try {
+            return $this->successResponse->setData([
+                'author_versions' => AuthorVersionResource::collection($this->authorService->version($request->id))
+            ])->setMessages(
+                Lang::get('Author Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

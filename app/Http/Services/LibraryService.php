@@ -58,4 +58,8 @@ class LibraryService
         $this->bookLibraryRepository->deleteByLibraryId($id);
         return $this->libraryRepository->deleteById($id);
     }
+    public function version($id)
+    {
+        return $this->libraryRepository->getVersions($id);
+    }
 }

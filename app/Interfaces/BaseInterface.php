@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 interface BaseInterface
 {
     public function getAll();
+
     public function getById(int $id);
+
     public function deleteById(int $id);
+
     public function createData(array $data);
-    public function updateData($id, array $data);
+
+    public function updateData(int $id, array $data);
+
     public function getAllByPagination(array $parameters = []);
+    public function getVersions(int $id);
 }

@@ -53,8 +53,12 @@ class CategoryService
 
     public function delete($id)
     {
-        // dd(7);
         $this->bookCategoryRepository->deleteByCategoryId($id);
         return $this->categoryRepository->deleteById($id);
+    }
+
+    public function version($id)
+    {
+        return $this->categoryRepository->getVersions($id);
     }
 }

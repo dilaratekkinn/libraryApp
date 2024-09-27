@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Requests\Category\CategoryCreateRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategoryVersionResource;
 use App\Http\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -57,7 +60,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(CategoryCreateRequest $request)
     {
         try {
             $category = $this->categoryService->createData($request->all());
@@ -73,7 +76,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, CategoryUpdateRequest $request)
     {
         try {
             $category = $this->categoryService->updateData($id, $request->all());
@@ -106,7 +109,6 @@ class CategoryController extends Controller
 
     public function getByPagination(Request $request)
     {
-
         try {
             list($categories, $count) = $this->categoryService->getByPagination($request->all());
             return $this->successResponse->setData([
@@ -115,6 +117,20 @@ class CategoryController extends Controller
                 ]
             )->setMessages(
                 Lang::get('Categories are listed Successfully'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+    }
+    public function versions(Request $request)
+    {
+        try {
+            return $this->successResponse->setData([
+                'category_versions' => CategoryVersionResource::collection($this->categoryService->version($request->id))
+            ])->setMessages(
+                    Lang::get(' Category Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

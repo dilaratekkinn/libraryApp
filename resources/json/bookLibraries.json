@@ -1,0 +1,21 @@
+[
+    { "book_id": 1, "library_id": 1 },
+    { "book_id": 2, "library_id": 2 },
+    { "book_id": 3, "library_id": 1 },
+    { "book_id": 4, "library_id": 3 },
+    { "book_id": 5, "library_id": 4 },
+    { "book_id": 6, "library_id": 1 },
+    { "book_id": 7, "library_id": 5 },
+    { "book_id": 8, "library_id": 3 },
+    { "book_id": 9, "library_id": 4 },
+    { "book_id": 10, "library_id": 5 },
+    { "book_id": 11, "library_id": 2 },
+    { "book_id": 12, "library_id": 3 },
+    { "book_id": 13, "library_id": 5 },
+    { "book_id": 14, "library_id": 1 },
+    { "book_id": 15, "library_id": 2 },
+    { "book_id": 16, "library_id": 4 },
+    { "book_id": 17, "library_id": 1 },
+    { "book_id": 18, "library_id": 5 },
+    { "book_id": 19, "library_id": 3 }
+]

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Requests\Book\BookCreateRequest;
+use App\Http\Requests\Book\BookUpdateRequest;
 use App\Http\Resources\BookResource;
+use App\Http\Resources\BookVersionResource;
 use App\Http\Services\BookService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -57,7 +60,7 @@ class BookController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(BookCreateRequest $request)
     {
         try {
             $book = $this->bookService->createData($request->all());
@@ -73,7 +76,7 @@ class BookController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, BookUpdateRequest $request)
     {
         try {
             $book = $this->bookService->updateData($id, $request->all());
@@ -108,13 +111,28 @@ class BookController extends Controller
     {
 
         try {
-            list($categories, $count) = $this->categoryService->getByPagination($request->all());
+            list($books, $count) = $this->bookService->getByPagination($request->all());
             return $this->successResponse->setData([
-                    'categories' => CategoryResource::collection($categories),
+                    'books' => BookResource::collection($books),
                     'count' => $count
                 ]
             )->setMessages(
-                Lang::get('Categories are listed Successfully'),
+                Lang::get('Books are listed Successfully'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+    }
+
+    public function versions(Request $request)
+    {
+        try {
+            return $this->successResponse->setData([
+                'book_versions' => BookVersionResource::collection($this->bookService->version($request->id))
+            ])->setMessages(
+                Lang::get('Book Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

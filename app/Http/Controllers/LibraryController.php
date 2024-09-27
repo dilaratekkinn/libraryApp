@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Requests\Library\LibraryCreateRequest;
+use App\Http\Requests\Library\LibraryUpdateRequest;
+use App\Http\Resources\CategoryVersionResource;
 use App\Http\Resources\LibraryResource;
+use App\Http\Resources\LibraryVersionResource;
 use App\Http\Services\LibraryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -57,7 +61,7 @@ class LibraryController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(LibraryCreateRequest $request)
     {
         try {
             $library = $this->libraryService->createData($request->all());
@@ -73,7 +77,7 @@ class LibraryController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+        public function update($id, LibraryUpdateRequest $request)
     {
         try {
             $library = $this->libraryService->updateData($id, $request->all());
@@ -105,7 +109,6 @@ class LibraryController extends Controller
 
     public function getByPagination(Request $request)
     {
-
         try {
             list($libraries, $count) = $this->libraryService->getByPagination($request->all());
             return $this->successResponse->setData([
@@ -114,6 +117,21 @@ class LibraryController extends Controller
                 ]
             )->setMessages(
                 Lang::get('Libraries are listed Successfully'),
+            )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+    }
+
+    public function versions(Request $request)
+    {
+        try {
+            return $this->successResponse->setData([
+                'library_versions' => LibraryVersionResource::collection($this->libraryService->version($request->id))
+            ])->setMessages(
+                Lang::get(' Library Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\ResponseInterface;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Services\AuthorService;
+use App\Http\Services\AuthService;
 use App\Http\Services\BookService;
 use App\Http\Services\CategoryService;
 use App\Http\Services\LibraryService;
@@ -33,8 +35,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(LibraryService::class)->give(LibraryService::class);
         $this->app->when(BookService::class)->give(BookService::class);
         $this->app->when(CategoryService::class)->give(CategoryService::class);
+        $this->app->when(AuthService::class)->give(AuthService::class);
 
         //Controllers
+        $this->app->when(AuthController::class)->give(AuthService::class);
+        $this->app->when(AuthController::class)->needs(ResponseInterface::class)->give(FailResponse::class);
+        $this->app->when(AuthController::class)->needs(ResponseInterface::class)->give(SuccessResponse::class);
+
         $this->app->when(AuthorController::class)->give(AuthorService::class);
         $this->app->when(AuthorController::class)->needs(BaseInterface::class)->give(AuthorRepository::class);
         $this->app->when(AuthorController::class)->needs(ResponseInterface::class)->give(FailResponse::class);

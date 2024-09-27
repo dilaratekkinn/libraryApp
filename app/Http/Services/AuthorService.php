@@ -60,6 +60,10 @@ class AuthorService
             $this->authorRepository->deleteById($id);
         }
         return true;
+    }
 
+    public function version($id)
+    {
+        return $this->authorRepository->getVersions($id);
     }
 }

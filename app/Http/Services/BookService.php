@@ -112,4 +112,9 @@ class BookService
 
         return $this->bookRepository->deleteById($id);
     }
+
+    public function version($id)
+    {
+        return $this->bookRepository->getVersions($id);
+    }
 }

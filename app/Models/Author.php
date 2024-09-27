@@ -10,8 +10,9 @@ use Mpociot\Versionable\VersionableTrait;
 class Author extends Model
 {
     use HasFactory;
-
+    use VersionableTrait;
     protected $guarded = [];
+
 
     public function getBooksAuthor()
     {
