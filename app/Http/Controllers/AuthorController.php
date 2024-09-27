@@ -4,24 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
-use App\Http\Resources\BookResource;
-use App\Http\Services\BookService;
+use App\Http\Resources\AuthorResource;
+use App\Http\Services\AuthorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
-class BookController extends Controller
+class AuthorController extends Controller
 {
-    private BookService $bookService;
+    private AuthorService $authorService;
     private SuccessResponse $successResponse;
     private FailResponse $failResponse;
 
     public function __construct(
-        BookService     $bookService,
+        AuthorService $authorService,
         SuccessResponse $successResponse,
         FailResponse    $failResponse,
     )
     {
-        $this->bookService = $bookService;
+        $this->authorService = $authorService;
         $this->successResponse = $successResponse;
         $this->failResponse = $failResponse;
     }
@@ -30,10 +30,10 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                    'books' => BookResource::collection($this->bookService->listAll()),
+                    'authorizes' => AuthorResource::collection($this->authorService->listAll()),
                 ]
             )->setMessages(
-                Lang::get('Books are listed Successfully'),
+                Lang::get('Authorizes are listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -46,9 +46,9 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                'book' => new BookResource($this->bookService->show($request->id))
+                'author' => new AuthorResource($this->authorService->show($request->id))
             ])->setMessages(
-                Lang::get('Book Listed Successfully'),
+                Lang::get('Author Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -60,14 +60,13 @@ class BookController extends Controller
     public function create(Request $request)
     {
         try {
-            $book = $this->bookService->createData($request->all());
+            $author = $this->authorService->createData($request->all());
             return $this->successResponse->setData([
-                'book' => new BookResource($book)
+                'author' => new AuthorResource($author)
             ])->setMessages(
-                Lang::get('Book Created Successfully'),
+                Lang::get('Author Created Successfully'),
             )->send();
         } catch (\Exception $e) {
-            dd($e);
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),
             ])->send();
@@ -77,11 +76,11 @@ class BookController extends Controller
     public function update($id, Request $request)
     {
         try {
-            $book = $this->bookService->updateData($id, $request->all());
+            $author = $this->authorService->updateData($id, $request->all());
             return $this->successResponse->setData([
-                'book' => new BookResource($book)
+                'author' => new AuthorResource($author)
             ])->setMessages(
-                Lang::get('Book Updated Successfully'),
+                Lang::get('Author Updated Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -94,9 +93,9 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                $this->bookService->delete($request->id)
+                $this->authorService->delete($request->id)
             ])->setMessages(
-                Lang::get('Book Deleted Successfully'),
+                Lang::get('Author Deleted Successfully'),
             )->send();
 
         } catch (\Exception $e) {
@@ -108,13 +107,13 @@ class BookController extends Controller
     {
 
         try {
-            list($categories, $count) = $this->categoryService->getByPagination($request->all());
+            list($authorizes, $count) = $this->authorService->getByPagination($request->all());
             return $this->successResponse->setData([
-                    'categories' => CategoryResource::collection($categories),
+                    'authorizes' => AuthorResource::collection($authorizes),
                     'count' => $count
                 ]
             )->setMessages(
-                Lang::get('Categories are listed Successfully'),
+                Lang::get('Authorizes are listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

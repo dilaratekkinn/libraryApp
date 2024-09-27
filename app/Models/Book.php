@@ -12,5 +12,11 @@ class Book extends Model
     use VersionableTrait;
     protected $guarded = [];
 
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'book_categories');
+    }
+    public function author() {
+        return $this->belongsTo(Author::class);
+    }
 
 }

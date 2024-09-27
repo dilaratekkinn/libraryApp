@@ -4,24 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
-use App\Http\Resources\BookResource;
-use App\Http\Services\BookService;
+use App\Http\Resources\CategoryResource;
+use App\Http\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
-class BookController extends Controller
+class CategoryController extends Controller
 {
-    private BookService $bookService;
+    private CategoryService $categoryService;
     private SuccessResponse $successResponse;
     private FailResponse $failResponse;
 
     public function __construct(
-        BookService     $bookService,
+        CategoryService $categoryService,
         SuccessResponse $successResponse,
         FailResponse    $failResponse,
     )
     {
-        $this->bookService = $bookService;
+        $this->categoryService = $categoryService;
         $this->successResponse = $successResponse;
         $this->failResponse = $failResponse;
     }
@@ -30,10 +30,10 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                    'books' => BookResource::collection($this->bookService->listAll()),
+                    'categories' => CategoryResource::collection($this->categoryService->listAll()),
                 ]
             )->setMessages(
-                Lang::get('Books are listed Successfully'),
+                Lang::get('Categories are listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -46,9 +46,9 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                'book' => new BookResource($this->bookService->show($request->id))
+                'category' => new CategoryResource($this->categoryService->show($request->id))
             ])->setMessages(
-                Lang::get('Book Listed Successfully'),
+                Lang::get('Category Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -60,14 +60,13 @@ class BookController extends Controller
     public function create(Request $request)
     {
         try {
-            $book = $this->bookService->createData($request->all());
+            $category = $this->categoryService->createData($request->all());
             return $this->successResponse->setData([
-                'book' => new BookResource($book)
+                'category' => new CategoryResource($category)
             ])->setMessages(
-                Lang::get('Book Created Successfully'),
+                Lang::get('Category Created Successfully'),
             )->send();
         } catch (\Exception $e) {
-            dd($e);
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),
             ])->send();
@@ -77,11 +76,11 @@ class BookController extends Controller
     public function update($id, Request $request)
     {
         try {
-            $book = $this->bookService->updateData($id, $request->all());
+            $category = $this->categoryService->updateData($id, $request->all());
             return $this->successResponse->setData([
-                'book' => new BookResource($book)
+                'category' => new CategoryResource($category)
             ])->setMessages(
-                Lang::get('Book Updated Successfully'),
+                Lang::get('Category Updated Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -94,9 +93,9 @@ class BookController extends Controller
     {
         try {
             return $this->successResponse->setData([
-                $this->bookService->delete($request->id)
+                $this->categoryService->delete($request->id)
             ])->setMessages(
-                Lang::get('Book Deleted Successfully'),
+                Lang::get('Category Deleted Successfully'),
             )->send();
 
         } catch (\Exception $e) {
@@ -122,4 +121,5 @@ class BookController extends Controller
             ])->send();
         }
     }
+
 }

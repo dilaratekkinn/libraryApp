@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Lang;
 
 class LibraryController extends Controller
 {
+    private LibraryService $libraryService;
+    private SuccessResponse $successResponse;
+    private FailResponse $failResponse;
+
     public function __construct(
         LibraryService  $libraryService,
         SuccessResponse $successResponse,
@@ -88,7 +92,12 @@ class LibraryController extends Controller
     public function delete(Request $request)
     {
         try {
-            return $this->libraryService->delete($request->id);
+            return $this->successResponse->setData([
+                $this->libraryService->delete($request->id)
+            ])->setMessages(
+                Lang::get('Library Deleted Successfully'),
+            )->send();
+
         } catch (\Exception $e) {
             return $e->getMessage();
         }

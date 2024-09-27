@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Mpociot\Versionable\VersionableTrait;
 
 
-class Author extends Model
+class BookLibrary extends Model
 {
     use HasFactory;
+    use VersionableTrait;
 
     protected $guarded = [];
 
-    public function getBooksAuthor()
-    {
-        return $this->hasMany(Book::class);
-    }
 }

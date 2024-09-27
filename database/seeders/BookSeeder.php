@@ -25,10 +25,7 @@ class BookSeeder extends Seeder
                 'name' => $book->name,
                 'subtitle' => $book->subtitle,
                 'summary' => $book->subtitle,
-                'cover_image' => $book->cover_image,
                 'author_id'=>$book->author_id,
-                'category_id'=>$book->category_id,
-                'library_id'=>$book->library_id,
                 'published_year'=>$book->published_year,
                 'is_active'=>$book->is_active,
             ]);

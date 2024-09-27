@@ -2,57 +2,88 @@
 
 namespace App\Http\Services;
 
-use App\Models\Author;
-use App\Models\Book;
-use App\Models\BookCategory;
-use App\Models\Category;
+
+use App\Repositories\BookCategoryRepository;
+use App\Repositories\BookLibraryRepository;
+use App\Repositories\BookRepository;
 use Illuminate\Support\Facades\Lang;
 
 class BookService
 {
-    public function listAll(array $parameters)
+    private BookRepository $bookRepository;
+    private BookCategoryRepository $bookCategoryRepository;
+    private BookLibraryRepository $bookLibraryRepository;
+
+    public function __construct(
+        BookRepository         $bookRepository,
+        BookCategoryRepository $bookCategoryRepository,
+        BookLibraryRepository  $bookLibraryRepository
+    )
     {
-        $defaults = [
-            'pageNumber' => 1,
-            'rowsPerPage' => 20,
-        ];
-
-        $parameters = array_merge($defaults, $parameters);
-        $booksQuery = Book::query();
-        $count = $booksQuery->count();
-        $books = $booksQuery
-            ->orderBy('id', 'desc')
-            ->offset(($parameters['pageNumber'] - 1) * $parameters['rowsPerPage'])
-            ->limit($parameters['rowsPerPage'])
-            ->get();
-
-        return [$books, $count];
+        $this->bookRepository = $bookRepository;
+        $this->bookCategoryRepository = $bookCategoryRepository;
+        $this->bookLibraryRepository = $bookLibraryRepository;
     }
 
-    public function createRecord(array $parameters)
+    public function listAll()
     {
-        $checkBook = Book::where('name',$parameters['name'])->first();
-        if($checkBook){
-            throw new \Exception(Lang::get('That Book Is Already Exits'));
+        return $this->bookRepository->getAll();
+    }
+
+    public function getByPagination(array $parameters)
+    {
+        return $this->bookRepository->getAllByPagination($parameters);
+    }
+
+    public function show($id)
+    {
+        return $this->bookRepository->getById($id);
+    }
+
+    public function createData(array $parameters)
+    {
+        $data = [
+            'name' => $parameters['name'],
+            'subtitle' => $parameters['subtitle'],
+            'author_id' => $parameters['author_id'],
+            'summary' => $parameters['summary'],
+            'published_year' => $parameters['published_year'],
+        ];
+
+        $book = $this->bookRepository->createData($data);
+        foreach ($parameters['category_ids'] as $categoryId) {
+            $data = [
+                'book_id' => $book->id,
+                'category_id' => $categoryId
+            ];
+            $this->bookCategoryRepository->createData($data);
         }
-        $book = new Book();
-        $book->name=$parameters['name'];
-        $book->subtitle=$parameters['subtitle'];
-        $book->summary=$parameters['summary'];
-        $book->cover_image=$parameters['cover_image'];
-        $book->author_id=$parameters['author_id'];
 
-        foreach ($parameters['libraries'] as $library){
-
+        foreach ($parameters['library_ids'] as $libraryId) {
+            $data = [
+                'book_id' => $book->id,
+                'library_id' => $libraryId
+            ];
+            $this->bookLibraryRepository->createData($data);
         }
+        return $book;
+    }
 
-        $book->published_year=$parameters['published_year'];
-        $book->is_active=$parameters['is_active'];
-        $book->save();
-        foreach ($parameters['category_ids'] as $category){
-            $checkCategory=Category::where('name',$category['name'])->first();
+    public function updateData($id, array $parameters)
+    {
+        $data = [
+            'name' => $parameters['name'],
+            'subtitle' => $parameters['subtitle'],
+            'author_id' => $parameters['author_id'],
+            'summary' => $parameters['summary'],
+            'published_year' => $parameters['published_year'],
+        ];
+        return $this->bookRepository->updateData($id, $data);
+    }
 
-        }
+    public function delete($id)
+    {
 
+        return $this->bookRepository->deleteById($id);
     }
 }

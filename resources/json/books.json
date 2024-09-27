@@ -1,232 +1,173 @@
 [
-
-        {
-            "id": 1,
-            "name": "The Silent Patient",
-            "subtitle": "A psychological thriller",
-            "author_id": 101,
-            "summary": "A woman shoots her husband and then stops speaking. What really happened?",
-            "cover_image": "cover1.jpg",
-            "category_id": 1,
-            "library_id": 2,
-            "published_year": "2019-02-05",
-            "is_active": true
-        },
-        {
-            "id": 2,
-            "name": "Educated",
-            "subtitle": "A memoir of transformation",
-            "author_id": 102,
-            "summary": "A woman grows up in a strict, survivalist family and eventually earns a PhD.",
-            "cover_image": "cover2.jpg",
-            "category_id": 2,
-            "library_id": 3,
-            "published_year": "2018-02-20",
-            "is_active": true
-        },
-        {
-            "id": 3,
-            "name": "Becoming",
-            "subtitle": "A personal journey",
-            "author_id": 103,
-            "summary": "Michelle Obama shares her life from childhood to the White House.",
-            "cover_image": "cover3.jpg",
-            "category_id": 2,
-            "library_id": 1,
-            "published_year": "2018-11-13",
-            "is_active": true
-        },
-        {
-            "id": 4,
-            "name": "The Testaments",
-            "subtitle": "A sequel to The Handmaid's Tale",
-            "author_id": 104,
-            "summary": "The story continues from Margaret Atwood's dystopian world.",
-            "cover_image": "cover4.jpg",
-            "category_id": 3,
-            "library_id": 2,
-            "published_year": "2019-09-10",
-            "is_active": true
-        },
-        {
-            "id": 5,
-            "name": "Where the Crawdads Sing",
-            "subtitle": "A mysterious murder in the marsh",
-            "author_id": 105,
-            "summary": "A young woman grows up isolated in the wild and is later accused of murder.",
-            "cover_image": "cover5.jpg",
-            "category_id": 4,
-            "library_id": 3,
-            "published_year": "2018-08-14",
-            "is_active": true
-        },
-        {
-            "id": 6,
-            "name": "Little Fires Everywhere",
-            "subtitle": "Secrets of a suburban family",
-            "author_id": 106,
-            "summary": "A family and their picture-perfect lives unravel when a mysterious artist moves in.",
-            "cover_image": "cover6.jpg",
-            "category_id": 1,
-            "library_id": 4,
-            "published_year": "2017-09-12",
-            "is_active": true
-        },
-        {
-            "id": 7,
-            "name": "The Night Circus",
-            "subtitle": "A magical competition",
-            "author_id": 107,
-            "summary": "Two young illusionists are bound by a mysterious competition.",
-            "cover_image": "cover7.jpg",
-            "category_id": 5,
-            "library_id": 1,
-            "published_year": "2011-09-13",
-            "is_active": true
-        },
-        {
-            "id": 8,
-            "name": "Normal People",
-            "subtitle": "A story of love and friendship",
-            "author_id": 108,
-            "summary": "The complicated relationship between two Irish students over several years.",
-            "cover_image": "cover8.jpg",
-            "category_id": 2,
-            "library_id": 2,
-            "published_year": "2018-08-28",
-            "is_active": true
-        },
-        {
-            "id": 9,
-            "name": "Dune",
-            "subtitle": "The epic sci-fi saga",
-            "author_id": 109,
-            "summary": "A young man must take control of a desert planet's vital resource.",
-            "cover_image": "cover9.jpg",
-            "category_id": 6,
-            "library_id": 4,
-            "published_year": "1965-08-01",
-            "is_active": true
-        },
-        {
-            "id": 10,
-            "name": "1984",
-            "subtitle": "A dystopian future",
-            "author_id": 110,
-            "summary": "In a world of totalitarian rule, one man dares to resist.",
-            "cover_image": "cover10.jpg",
-            "category_id": 7,
-            "library_id": 5,
-            "published_year": "1949-06-08",
-            "is_active": true
-        },
-        {
-            "id": 11,
-            "name": "The Catcher in the Rye",
-            "subtitle": "A journey of self-discovery",
-            "author_id": 111,
-            "summary": "A young man navigates the challenges of adolescence.",
-            "cover_image": "cover11.jpg",
-            "category_id": 2,
-            "library_id": 3,
-            "published_year": "1951-07-16",
-            "is_active": true
-        },
-        {
-            "id": 12,
-            "name": "The Road",
-            "subtitle": "A post-apocalyptic journey",
-            "author_id": 112,
-            "summary": "A father and son struggle to survive in a desolate, ruined world.",
-            "cover_image": "cover12.jpg",
-            "category_id": 6,
-            "library_id": 1,
-            "published_year": "2006-09-26",
-            "is_active": true
-        },
-        {
-            "id": 13,
-            "name": "The Alchemist",
-            "subtitle": "A journey to self-discovery",
-            "author_id": 113,
-            "summary": "A young shepherd travels in search of treasure and finds his destiny.",
-            "cover_image": "cover13.jpg",
-            "category_id": 5,
-            "library_id": 2,
-            "published_year": "1988-05-01",
-            "is_active": true
-        },
-        {
-            "id": 14,
-            "name": "Harry Potter and the Philosopher's Stone",
-            "subtitle": "The boy who lived",
-            "author_id": 114,
-            "summary": "A young wizard embarks on his first adventure at Hogwarts School.",
-            "cover_image": "cover14.jpg",
-            "category_id": 6,
-            "library_id": 4,
-            "published_year": "1997-06-26",
-            "is_active": true
-        },
-        {
-            "id": 15,
-            "name": "The Hobbit",
-            "subtitle": "An unexpected journey",
-            "author_id": 115,
-            "summary": "Bilbo Baggins embarks on an epic adventure with dwarves to reclaim a mountain.",
-            "cover_image": "cover15.jpg",
-            "category_id": 6,
-            "library_id": 5,
-            "published_year": "1937-09-21",
-            "is_active": true
-        },
-        {
-            "id": 16,
-            "name": "To Kill a Mockingbird",
-            "subtitle": "A fight for justice",
-            "author_id": 116,
-            "summary": "A young girl witnesses racial injustice in her hometown.",
-            "cover_image": "cover16.jpg",
-            "category_id": 7,
-            "library_id": 3,
-            "published_year": "1960-07-11",
-            "is_active": true
-        },
-        {
-            "id": 17,
-            "name": "Brave New World",
-            "subtitle": "A future of control",
-            "author_id": 117,
-            "summary": "In a world of genetic engineering and mind control, free will is a distant memory.",
-            "cover_image": "cover17.jpg",
-            "category_id": 7,
-            "library_id": 5,
-            "published_year": "1932-08-31",
-            "is_active": true
-        },
-        {
-            "id": 18,
-            "name": "Fahrenheit 451",
-            "subtitle": "A future where books are banned",
-            "author_id": 118,
-            "summary": "A fireman whose job is to burn books begins to question society.",
-            "cover_image": "cover18.jpg",
-            "category_id": 7,
-            "library_id": 2,
-            "published_year": "1953-10-19",
-            "is_active": true
-        },
-        {
-            "id": 19,
-            "name": "The Great Gatsby",
-            "subtitle": "The American dream",
-            "author_id": 119,
-            "summary": "A mysterious millionaire throws lavish parties but longs for a lost love.",
-            "cover_image": "cover19.jpg",
-            "category_id": 5,
-            "library_id": 4,
-            "published_year": "1925-04-10",
-            "is_active": true
-        }
-
-            ]
+    {
+        "id": 1,
+        "name": "The Silent Patient",
+        "subtitle": "A psychological thriller",
+        "author_id": 101,
+        "summary": "A woman shoots her husband and then stops speaking. What really happened?",
+        "published_year": "2019-02-05",
+        "is_active": true
+    },
+    {
+        "id": 2,
+        "name": "Educated",
+        "subtitle": "A memoir of transformation",
+        "author_id": 102,
+        "summary": "A woman grows up in a strict, survivalist family and eventually earns a PhD.",
+        "published_year": "2018-02-20",
+        "is_active": true
+    },
+    {
+        "id": 3,
+        "name": "Becoming",
+        "subtitle": "A personal journey",
+        "author_id": 103,
+        "summary": "Michelle Obama shares her life from childhood to the White House.",
+        "published_year": "2018-11-13",
+        "is_active": true
+    },
+    {
+        "id": 4,
+        "name": "The Testaments",
+        "subtitle": "A sequel to The Handmaid's Tale",
+        "author_id": 104,
+        "summary": "The story continues from Margaret Atwood's dystopian world.",
+        "published_year": "2019-09-10",
+        "is_active": true
+    },
+    {
+        "id": 5,
+        "name": "Where the Crawdads Sing",
+        "subtitle": "A mysterious murder in the marsh",
+        "author_id": 105,
+        "summary": "A young woman grows up isolated in the wild and is later accused of murder.",
+        "published_year": "2018-08-14",
+        "is_active": true
+    },
+    {
+        "id": 6,
+        "name": "Little Fires Everywhere",
+        "subtitle": "Secrets of a suburban family",
+        "author_id": 106,
+        "summary": "A family and their picture-perfect lives unravel when a mysterious artist moves in.",
+        "published_year": "2017-09-12",
+        "is_active": true
+    },
+    {
+        "id": 7,
+        "name": "The Night Circus",
+        "subtitle": "A magical competition",
+        "author_id": 107,
+        "summary": "Two young illusionists are bound by a mysterious competition.",
+        "published_year": "2011-09-13",
+        "is_active": true
+    },
+    {
+        "id": 8,
+        "name": "Normal People",
+        "subtitle": "A story of love and friendship",
+        "author_id": 108,
+        "summary": "The complicated relationship between two Irish students over several years.",
+        "published_year": "2018-08-28",
+        "is_active": true
+    },
+    {
+        "id": 9,
+        "name": "Dune",
+        "subtitle": "The epic sci-fi saga",
+        "author_id": 109,
+        "summary": "A young man must take control of a desert planet's vital resource.",
+        "published_year": "1965-08-01",
+        "is_active": true
+    },
+    {
+        "id": 10,
+        "name": "1984",
+        "subtitle": "A dystopian future",
+        "author_id": 110,
+        "summary": "In a world of totalitarian rule, one man dares to resist.",
+        "published_year": "1949-06-08",
+        "is_active": true
+    },
+    {
+        "id": 11,
+        "name": "The Catcher in the Rye",
+        "subtitle": "A journey of self-discovery",
+        "author_id": 111,
+        "summary": "A young man navigates the challenges of adolescence.",
+        "published_year": "1951-07-16",
+        "is_active": true
+    },
+    {
+        "id": 12,
+        "name": "The Road",
+        "subtitle": "A post-apocalyptic journey",
+        "author_id": 112,
+        "summary": "A father and son struggle to survive in a desolate, ruined world.",
+        "published_year": "2006-09-26",
+        "is_active": true
+    },
+    {
+        "id": 13,
+        "name": "The Alchemist",
+        "subtitle": "A journey to self-discovery",
+        "author_id": 113,
+        "summary": "A young shepherd travels in search of treasure and finds his destiny.",
+        "published_year": "1988-05-01",
+        "is_active": true
+    },
+    {
+        "id": 14,
+        "name": "Harry Potter and the Philosopher's Stone",
+        "subtitle": "The boy who lived",
+        "author_id": 114,
+        "summary": "A young wizard embarks on his first adventure at Hogwarts School.",
+        "published_year": "1997-06-26",
+        "is_active": true
+    },
+    {
+        "id": 15,
+        "name": "The Hobbit",
+        "subtitle": "An unexpected journey",
+        "author_id": 115,
+        "summary": "Bilbo Baggins embarks on an epic adventure with dwarves to reclaim a mountain.",
+        "published_year": "1937-09-21",
+        "is_active": true
+    },
+    {
+        "id": 16,
+        "name": "To Kill a Mockingbird",
+        "subtitle": "A fight for justice",
+        "author_id": 116,
+        "summary": "A young girl witnesses racial injustice in her hometown.",
+        "published_year": "1960-07-11",
+        "is_active": true
+    },
+    {
+        "id": 17,
+        "name": "Brave New World",
+        "subtitle": "A future of control",
+        "author_id": 117,
+        "summary": "In a world of genetic engineering and mind control, free will is a distant memory.",
+        "published_year": "1932-08-31",
+        "is_active": true
+    },
+    {
+        "id": 18,
+        "name": "Fahrenheit 451",
+        "subtitle": "A future where books are banned",
+        "author_id": 118,
+        "summary": "A fireman whose job is to burn books begins to question society.",
+        "published_year": "1953-10-19",
+        "is_active": true
+    },
+    {
+        "id": 19,
+        "name": "The Great Gatsby",
+        "subtitle": "The American dream",
+        "author_id": 119,
+        "summary": "A mysterious millionaire throws lavish parties but longs for a lost love.",
+        "published_year": "1925-04-10",
+        "is_active": true
+    }
+]

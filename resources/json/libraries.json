@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "Central City Library",
+        "address": "123 Main St, Central City"
+    },
+    {
+        "id": 2,
+        "name": "Eastside Community Library",
+        "address": "456 Elm St, Eastside"
+    },
+    {
+        "id": 3,
+        "name": "West End Library",
+        "address": "789 Oak St, West End"
+    },
+    {
+        "id": 4,
+        "name": "Northgate Public Library",
+        "address": "101 Pine St, Northgate"
+    },
+    {
+        "id": 5,
+        "name": "South Hill Library",
+        "address": "202 Cedar St, South Hill"
+    }
+]
