@@ -45,11 +45,11 @@ class AuthorController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         try {
             return $this->successResponse->setData([
-                'author' => new AuthorResource($this->authorService->show($request->id))
+                'author' => new AuthorResource($this->authorService->show($id))
             ])->setMessages(
                 Lang::get('Author Listed Successfully'),
             )->send();

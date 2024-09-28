@@ -46,11 +46,11 @@ class LibraryController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         try {
             return $this->successResponse->setData([
-                'library' => new LibraryResource($this->libraryService->show($request->id))
+                'library' => new LibraryResource($this->libraryService->show($id))
             ])->setMessages(
                 Lang::get('Library Listed Successfully'),
             )->send();

@@ -18,11 +18,13 @@ class BookResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'subtitle' => $this->subtitle,
-            'author' => new AuthorResource($this->getAuthor),
             'summary' => $this->summary,
             'published_year' => $this->published_year,
             'categories' => CategoryResource::collection($this->categories)
         ];
+        if ($request->route()->getName() != 'author.show') {
+            $data['author'] =   new AuthorResource($this->getAuthor);
+        }
         if ($request->route()->getName() == 'book.show') {
             $data['libraries'] = LibraryResource::collection($this->libraries);
             $data['medias'] = BookMediaResource::collection($this->getMedia());

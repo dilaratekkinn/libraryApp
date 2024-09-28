@@ -45,11 +45,11 @@ class CategoryController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         try {
             return $this->successResponse->setData([
-                'category' => new CategoryResource($this->categoryService->show($request->id))
+                'category' => new CategoryResource($this->categoryService->show($id))
             ])->setMessages(
                 Lang::get('Category Listed Successfully'),
             )->send();

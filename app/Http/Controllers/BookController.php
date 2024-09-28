@@ -46,11 +46,11 @@ class BookController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
         try {
             return $this->successResponse->setData([
-                'book' => new BookResource($this->bookService->show($request->id))
+                'book' => new BookResource($this->bookService->show($id))
             ])->setMessages(
                 Lang::get('Book Listed Successfully'),
             )->send();

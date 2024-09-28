@@ -26,7 +26,7 @@ class BookAddMediaRequest extends FormRequest
     {
 
         return [
-            'file' => 'required|file|mimes:jpg,png,jpeg,gif|max:2048',
+            'image' => 'required|file|mimes:jpg,png,jpeg,gif|max:2048',
         ];
     }
     /**
