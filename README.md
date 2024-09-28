@@ -1,66 +1,218 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laravel API Project
 
-## About Laravel
+This project aims to develop a library management system using the Laravel framework and MySQL database. The system will manage relationships between books, authors, and libraries, allowing users to add, edit, and delete book and author information. It will also include features for tracking changes over time and uploading media files
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Migrations](#migrations)
+- [Running the API](#running-the-api)
+- [API Documentation](#api-documentation)
+- [Deployment](#deployment)
+- [License](#license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requirements
 
-## Learning Laravel
+- PHP >= 8.0
+- Composer
+- Laravel >= 10.0
+- MySQL database systems
+- [Optional] Postman for API testing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Follow these steps to get the project up and running locally:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository:**
 
-## Laravel Sponsors
+   ```bash
+   git clone https://github.com/your-username/your-laravel-api.git
+   cd your-laravel-api
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install dependencies:**
 
-### Premium Partners
+   Run Composer to install the project dependencies.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   ```bash
+   composer install
+   ```
 
-## Contributing
+3. **Environment setup:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   Copy the `.env.example` file and set up your environment variables.
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   Set up your database and other environment-specific settings inside `.env`.
 
-## Security Vulnerabilities
+4. **Generate application key:**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan key:generate
+   ```
+5. **Install additional packagesy:**
+
+   ```bash
+   composer require laravel/passport
+   composer require spatie/laravel-medialibrary
+   composer require spatie/laravel-versionable
+   ```
+5. **Run Passport installation:**
+
+   ```bash
+   php artisan passport:install
+   ```
+
+
+## Configuration
+
+Make sure to configure the following in the `.env` file:
+
+- **Database**: Set your database credentials (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+- **Other configurations**: Configure cache, queues, and mail services if applicable.
+
+## Migrations
+
+To set up your database tables, run the following command:
+
+```bash
+php artisan migrate
+```
+
+To seed the database with test data :
+
+```bash
+php artisan db:seed
+```
+
+## Running the API
+
+To serve the application, use Laravel's built-in development server:
+
+```bash
+php artisan serve
+```
+
+The API will be accessible at `http://localhost:8000`.
+
+## API Documentation
+
+The API exposes the following endpoints:
+
+| Method | Endpoint                      | Description                     | Auth Required |
+|--------|-------------------------------|---------------------------------|---------------|
+| GET    | `/api/book`                   | Retrieve a list of all books    | Yes           |
+| POST   | `/api/book/create`            | Create a new book               | Yes           |
+| GET    | `/api/book/{id}`              | Retrieve a specific book by ID  | Yes           |
+| PUT    | `/api/book/{id}`              | Update a specific book by ID    | Yes           |
+| DELETE | `/api/book/{id}`              | Delete a specific book by ID    | Yes           |
+| GET    | `/api/book/version/{id}`      | Retrieve  previous record by ID | Yes           |
+| POST   | `/api/book/add-media/{id}`    | Create images of book by ID     | Yes           |
+| DELETE | `/api/book/delete-media/{id}` | Delete images of book by ID     | Yes           |
+| POST   | `/api/login`                  | User login and retrieve a token | No            |
+
+> Authentication for secured routes is handled via JWT or Passport tokens.
+
+### Example Requests:
+
+#### 1. Retrieve a List of Books
+
+```bash
+GET /api/book
+```
+
+Example Response:
+
+```json
+{
+    "status": true,
+    "messages": "Books are listed Successfully",
+    "data": {
+        "books": [
+          
+            {
+                "id": 2,
+                "name": "Educated",
+                "subtitle": "A memoir of transformation",
+                "summary": "A memoir of transformation",
+                "published_year": "2018-02-20",
+                "categories": [
+                    {
+                        "id": 2,
+                        "name": "Memoir"
+                    }
+                ],
+                "author": {
+                    "id": 102,
+                    "name": "Tara Westover",
+                    "bio": "Tara Westover is an American memoirist, essayist, and historian. She is known for her memoir 'Educated'."
+                }
+            },
+            {
+                "id": 1,
+                "name": "The Silent Patient",
+                "subtitle": "A psychological thriller",
+                "summary": "A psychological thriller",
+                "published_year": "2019-02-05",
+                "categories": [
+                    {
+                        "id": 1,
+                        "name": "Thriller"
+                    }
+                ],
+                "author": {
+                    "id": 101,
+                    "name": "Alex Michaelides",
+                    "bio": "Alex Michaelides is a British-Cypriot author best known for his debut novel 'The Silent Patient'."
+                }
+            }
+        ]
+    }
+}
+```
+
+#### 2. Create a New Book
+
+```bash
+POST /api/book
+```
+
+Request Body:
+
+```json
+{
+    "name": "test",
+    "subtitle": "test",
+    "author_id": 111,
+    "summary": "test",
+    "published_year": "1951-07-16",
+    "library_ids":[2,3],
+    "category_ids":[5,7]
+
+}
+```
+## Deployment
+
+For deploying your API to a live server, follow these steps:
+
+1. **Set up your server**: Ensure PHP, Composer, and your database are installed and configured on your server.
+2. **Clone the repository**: Clone the project to your server.
+3. **Install dependencies**: Run `composer install` on the server.
+4. **Set environment variables**: Configure the `.env` file with production settings.
+5. **Run migrations**: Run `php artisan migrate --force` to create production database tables.
+6. **Cache config and routes** (optional for performance):
+
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   ```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
