@@ -9,6 +9,7 @@ use App\Repositories\BookCategoryRepository;
 use App\Repositories\BookLibraryRepository;
 use App\Repositories\BookRepository;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Str;
 
 class BookService
 {
@@ -30,11 +31,6 @@ class BookService
     public function listAll()
     {
         return $this->bookRepository->getAll();
-    }
-
-    public function getByPagination(array $parameters)
-    {
-        return $this->bookRepository->getAllByPagination($parameters);
     }
 
     public function show($id)
@@ -109,12 +105,25 @@ class BookService
     {
         $this->bookCategoryRepository->deleteByBookId($id);
         $this->bookLibraryRepository->deleteByBookId($id);
-
-        return $this->bookRepository->deleteById($id);
+        $this->bookRepository->deleteById($id);
+        return true;
     }
 
     public function version($id)
     {
         return $this->bookRepository->getVersions($id);
     }
+
+    public function addMedia($id, array $parameters)
+    {
+        $fileName = Str::slug($parameters['image']->getClientOriginalName()).'_'.time() . '.' . $parameters['image']->getClientOriginalExtension();
+        $pathFile = $parameters['image']->storeAs('media', $fileName, 'public');
+
+        return $this->bookRepository->addMedia($id,$pathFile);
+    }
+    public function deleteMedia($id,$mediaId)
+    {
+        return $this->bookRepository->deleteMedia($id,$mediaId);
+    }
+
 }

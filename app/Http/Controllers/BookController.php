@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\ApiResponses\FailResponse;
 use App\Http\ApiResponses\SuccessResponse;
+use App\Http\Requests\Book\BookAddMediaRequest;
 use App\Http\Requests\Book\BookCreateRequest;
 use App\Http\Requests\Book\BookUpdateRequest;
 use App\Http\Resources\BookResource;
@@ -92,32 +93,28 @@ class BookController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            return $this->successResponse->setData([
-                $this->bookService->delete($request->id)
-            ])->setMessages(
+            $this->bookService->delete($id);
+            return $this->successResponse->setMessages(
                 Lang::get('Book Deleted Successfully'),
             )->send();
 
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),
-            ])->send();        }
+            ])->send();
+        }
     }
 
-    public function getByPagination(Request $request)
+    public function versions($id)
     {
-
         try {
-            list($books, $count) = $this->bookService->getByPagination($request->all());
             return $this->successResponse->setData([
-                    'books' => BookResource::collection($books),
-                    'count' => $count
-                ]
-            )->setMessages(
-                Lang::get('Books are listed Successfully'),
+                'book_versions' => BookVersionResource::collection($this->bookService->version($id))
+            ])->setMessages(
+                Lang::get('Book Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -126,14 +123,30 @@ class BookController extends Controller
         }
     }
 
-    public function versions(Request $request)
+    public function addMedia(BookAddMediaRequest $request, $id)
     {
         try {
+            $book = $this->bookService->addMedia($id, $request->all());
             return $this->successResponse->setData([
-                'book_versions' => BookVersionResource::collection($this->bookService->version($request->id))
+                'book' => new BookResource($book)
             ])->setMessages(
-                Lang::get('Book Versions Listed Successfully'),
+                Lang::get('Book Created Successfully'),
             )->send();
+        } catch (\Exception $e) {
+            return $this->failResponse->setMessages([
+                'main' => $e->getMessage(),
+            ])->send();
+        }
+    }
+
+    public function deleteMedia($id, $mediaId)
+    {
+        try {
+            $this->bookService->deleteMedia($id, $mediaId);
+            return $this->successResponse->setMessages(
+                Lang::get('Book Media Deleted Successfully'),
+            )->send();
+
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),

@@ -19,25 +19,6 @@ class BaseRepository implements BaseInterface
         return $this->model->orderBy('id', 'desc')->get();
     }
 
-    public function getAllByPagination(array $parameters = [])
-    {
-        $defaults = [
-            'pageNumber' => 1,
-            'rowsPerPage' => 20,
-        ];
-
-        $parameters = array_merge($defaults, $parameters);
-        $query = $this->model::query();
-        $count = $query->count();
-        $data = $query
-            ->orderBy('id', 'desc')
-            ->offset(($parameters['pageNumber'] - 1) * $parameters['rowsPerPage'])
-            ->limit($parameters['rowsPerPage'])
-            ->get();
-
-        return [$data, $count];
-    }
-
     public function getById(int $id)
     {
         return $this->model->findOrFail($id);

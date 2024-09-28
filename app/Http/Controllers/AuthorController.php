@@ -19,7 +19,7 @@ class AuthorController extends Controller
     private FailResponse $failResponse;
 
     public function __construct(
-        AuthorService $authorService,
+        AuthorService   $authorService,
         SuccessResponse $successResponse,
         FailResponse    $failResponse,
     )
@@ -92,31 +92,12 @@ class AuthorController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            return $this->successResponse->setData([
-                $this->authorService->delete($request->id)
-            ])->setMessages(
+            $this->authorService->delete($id);
+            return $this->successResponse->setMessages(
                 Lang::get('Author Deleted Successfully'),
-            )->send();
-        } catch (\Exception $e) {
-            return $this->failResponse->setMessages([
-                'main' => $e->getMessage(),
-            ])->send();        }
-    }
-
-    public function getByPagination(Request $request)
-    {
-
-        try {
-            list($authorizes, $count) = $this->authorService->getByPagination($request->all());
-            return $this->successResponse->setData([
-                    'authorizes' => AuthorResource::collection($authorizes),
-                    'count' => $count
-                ]
-            )->setMessages(
-                Lang::get('Authorizes are listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -124,11 +105,12 @@ class AuthorController extends Controller
             ])->send();
         }
     }
-    public function versions(Request $request)
+
+    public function versions($id)
     {
         try {
             return $this->successResponse->setData([
-                'author_versions' => AuthorVersionResource::collection($this->authorService->version($request->id))
+                'author_versions' => AuthorVersionResource::collection($this->authorService->version($id))
             ])->setMessages(
                 Lang::get('Author Versions Listed Successfully'),
             )->send();

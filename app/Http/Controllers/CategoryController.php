@@ -92,45 +92,28 @@ class CategoryController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            return $this->successResponse->setData([
-                $this->categoryService->delete($request->id)
-            ])->setMessages(
+            $this->categoryService->delete($id);
+            return $this->successResponse->setMessages(
                 Lang::get('Category Deleted Successfully'),
             )->send();
 
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
                 'main' => $e->getMessage(),
-            ])->send();        }
-    }
-
-    public function getByPagination(Request $request)
-    {
-        try {
-            list($categories, $count) = $this->categoryService->getByPagination($request->all());
-            return $this->successResponse->setData([
-                    'categories' => CategoryResource::collection($categories),
-                    'count' => $count
-                ]
-            )->setMessages(
-                Lang::get('Categories are listed Successfully'),
-            )->send();
-        } catch (\Exception $e) {
-            return $this->failResponse->setMessages([
-                'main' => $e->getMessage(),
             ])->send();
         }
     }
-    public function versions(Request $request)
+
+    public function versions($id)
     {
         try {
             return $this->successResponse->setData([
-                'category_versions' => CategoryVersionResource::collection($this->categoryService->version($request->id))
+                'category_versions' => CategoryVersionResource::collection($this->categoryService->version($id))
             ])->setMessages(
-                    Lang::get(' Category Versions Listed Successfully'),
+                Lang::get(' Category Versions Listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([

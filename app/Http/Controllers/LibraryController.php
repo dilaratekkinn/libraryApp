@@ -77,7 +77,7 @@ class LibraryController extends Controller
         }
     }
 
-        public function update($id, LibraryUpdateRequest $request)
+    public function update($id, LibraryUpdateRequest $request)
     {
         try {
             $library = $this->libraryService->updateData($id, $request->all());
@@ -93,30 +93,12 @@ class LibraryController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            return $this->successResponse->setData([
-                $this->libraryService->delete($request->id)
-            ])->setMessages(
+            $this->libraryService->delete($id);
+            return $this->successResponse->setMessages(
                 Lang::get('Library Deleted Successfully'),
-            )->send();
-        } catch (\Exception $e) {
-            return $this->failResponse->setMessages([
-                'main' => $e->getMessage(),
-            ])->send();        }
-    }
-
-    public function getByPagination(Request $request)
-    {
-        try {
-            list($libraries, $count) = $this->libraryService->getByPagination($request->all());
-            return $this->successResponse->setData([
-                    'libraries' => LibraryResource::collection($libraries),
-                    'count' => $count
-                ]
-            )->setMessages(
-                Lang::get('Libraries are listed Successfully'),
             )->send();
         } catch (\Exception $e) {
             return $this->failResponse->setMessages([
@@ -125,11 +107,11 @@ class LibraryController extends Controller
         }
     }
 
-    public function versions(Request $request)
+    public function versions($id)
     {
         try {
             return $this->successResponse->setData([
-                'library_versions' => LibraryVersionResource::collection($this->libraryService->version($request->id))
+                'library_versions' => LibraryVersionResource::collection($this->libraryService->version($id))
             ])->setMessages(
                 Lang::get(' Library Versions Listed Successfully'),
             )->send();

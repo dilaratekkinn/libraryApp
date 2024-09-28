@@ -17,6 +17,5 @@ interface BaseInterface
 
     public function updateData(int $id, array $data);
 
-    public function getAllByPagination(array $parameters = []);
     public function getVersions(int $id);
 }

@@ -24,11 +24,6 @@ class LibraryService
         return $this->libraryRepository->getAll();
     }
 
-    public function getByPagination(array $parameters)
-    {
-        return $this->libraryRepository->getAllByPagination($parameters);
-    }
-
     public function show($id)
     {
         return $this->libraryRepository->getById($id);
@@ -56,8 +51,10 @@ class LibraryService
     public function delete($id)
     {
         $this->bookLibraryRepository->deleteByLibraryId($id);
-        return $this->libraryRepository->deleteById($id);
+        $this->libraryRepository->deleteById($id);
+        return true;
     }
+
     public function version($id)
     {
         return $this->libraryRepository->getVersions($id);

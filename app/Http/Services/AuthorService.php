@@ -22,10 +22,6 @@ class AuthorService
         return $this->authorRepository->getAll();
     }
 
-    public function getByPagination(array $parameters)
-    {
-        return $this->authorRepository->getAllByPagination($parameters);
-    }
 
     public function show($id)
     {

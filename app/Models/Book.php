@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Mpociot\Versionable\VersionableTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Book extends Model
+class Book extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
     use VersionableTrait;
     protected $guarded = [];

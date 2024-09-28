@@ -24,11 +24,6 @@ class CategoryService
         return $this->categoryRepository->getAll();
     }
 
-    public function getByPagination(array $parameters)
-    {
-        return $this->categoryRepository->getAllByPagination($parameters);
-    }
-
     public function show($id)
     {
         return $this->categoryRepository->getById($id);
@@ -54,7 +49,8 @@ class CategoryService
     public function delete($id)
     {
         $this->bookCategoryRepository->deleteByCategoryId($id);
-        return $this->categoryRepository->deleteById($id);
+        $this->categoryRepository->deleteById($id);
+        return true;
     }
 
     public function version($id)
